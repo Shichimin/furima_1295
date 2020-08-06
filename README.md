@@ -18,7 +18,7 @@
 - has_many :items
 - has_many :comments
 - has_many :likes
-- has_many :purchase_information
+- has_many :shipping_addresses
 
 ## items テーブル
 
@@ -40,7 +40,7 @@
 - belongs_to :user
 - has_many :comments
 - has_many :likes
-- has_one :purchase_information
+- has_one :item_purchase
 
 ## comments テーブル
 
@@ -67,7 +67,19 @@
 - belongs_to :user
 - belongs_to :item
 
-## purchase_information テーブル
+## item_purchases テーブル
+
+| Column              | Type       | Options                        |
+| ------------------- | ---------- | ------------------------------ |
+| shipping_address_id | int        | null: false, foreign_key: true |
+| item_id             | int        | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :shipping_address
+- belongs_to :item
+
+## shipping_addresses テーブル
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
@@ -78,9 +90,8 @@
 | property_name | string     |                                |
 | phone_number  | string     | null: false                    |
 | user_id       | int        | null: false, foreign_key: true |
-| item_id       | int        | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- belongs_to :item
+- has_many :item_purchases
