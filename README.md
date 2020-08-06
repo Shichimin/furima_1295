@@ -40,7 +40,7 @@
 - belongs_to :user
 - has_many :comments
 - has_many :likes
-- has_one :transaction
+- has_one :item_purchases
 
 ## comments テーブル
 
@@ -82,9 +82,9 @@
 ### Association
 
 - belongs_to :user
-- belongs_to :transaction
+- belongs_to :item_purchase
 
-## transactions テーブル
+## item_purchases テーブル
 
 | Column                  | Type       | Options                        |
 | ----------------------- | ---------- | ------------------------------ |
