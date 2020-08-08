@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    # items/1
   end
 
   def new
