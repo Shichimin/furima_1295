@@ -6,12 +6,7 @@ describe User, type: :model do
 
   describe 'ユーザー新規登録' do
     context '新規登録がうまくいくとき' do
-      it "nicknameとemailとpasswordと生年月日が存在し、passwordとpassword_confirmationが一致すれば登録できる" do
-        @user.nickname = "test太郎"
-        @user.email = "kkk@gmail.com"
-        @user.password = "a00000"
-        @user.password_confirmation = "a00000"
-        @user.birthday = "1930-01-01"
+      it "nicknameとemailとpasswordとbirthdayが存在し、passwordとpassword_confirmationが一致すれば登録できる" do
         expect(@user).to be_valid
       end
       it "passwordとpassword_confirmationが一致し、6文字以上の半角英数字混合であれば登録できる" do
@@ -83,6 +78,13 @@ describe User, type: :model do
         @user.email = "kkk.gmai.com"
         @user.valid?
         expect(@user.errors.full_messages).to include("Email is invalid")
+      end
+      it "登録済みのメールアドレスは登録できない" do
+        @user.save
+        another_user = FactoryBot.build(:user)
+        another_user.email = @user.email
+        another_user.valid?
+        expect(another_user.errors.full_messages).to include("Email has already been taken")
       end
       it "6文字未満のパスワードは登録できない" do
         @user.password = "a0000"
