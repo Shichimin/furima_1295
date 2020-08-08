@@ -10,7 +10,6 @@ class User < ApplicationRecord
     validates :email,    format: { with: /\A\S+@\S+\.\S+\z/ },
                          uniqueness: true
     validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i },
-                         length: { minimum: 6 },
                          confirmation: true
 
     with_options format: { with: /\A[ぁ-んァ-ン一-龥]/ } do
