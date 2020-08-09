@@ -36,5 +36,5 @@ class Item < ApplicationRecord
   end
 
   # priceの範囲が「¥300〜¥9,999,999」の間でないと保存できないようにする
-  validates :price, numericality: { greater_than_or_equal_to: 300, less_than: 10000000 }  
+  validates :price, numericality: { greater_than_or_equal_to: 300, less_than: 10_000_000 }
 end
