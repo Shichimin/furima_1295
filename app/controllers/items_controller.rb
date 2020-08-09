@@ -22,8 +22,11 @@ class ItemsController < ApplicationController
 
   def destroy
     item = Item.find_by(id: params[:id])
-    item.destroy
-    redirect_to root_path
+    if item.destroy
+      redirect_to root_path
+    else
+      render :show
+    end
   end
 
   private
