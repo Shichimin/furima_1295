@@ -9,9 +9,11 @@ class ItemsController < ApplicationController
   end
 
   def new
+    @item = Item.new
   end
 
   def create
+    @item = Item.coreate(item_params)
   end
 
   def edit
