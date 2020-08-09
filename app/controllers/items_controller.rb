@@ -14,6 +14,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.coreate(item_params)
+    # ↑履歴を残すための空commit
   end
 
   def edit
