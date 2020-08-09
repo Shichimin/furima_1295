@@ -22,4 +22,10 @@ class ItemsController < ApplicationController
 
   def destroy
   end
+
+  private
+
+  def set_item
+    @item = Item.find_by(id: params[:id])
+  end
 end
