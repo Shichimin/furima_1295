@@ -3,6 +3,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :category
   belongs_to_active_hash :shipping_origin
   belongs_to_active_hash :condition
+  belongs_to_active_hash :shipping_burden
 
   belongs_to :user
 
@@ -14,11 +15,13 @@ class Item < ApplicationRecord
     validates :category_id
     validates :shipping_origin_id
     validates :condition_id
+    validates :shipping_burden_id
   end
 
   with_options numericality: { other_than: 1 } do
     validates :category_id
     validates :shipping_origin_id
     validates :condition_id
+    validates :shipping_burden_id
   end
 end
