@@ -4,6 +4,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :shipping_origin
   belongs_to_active_hash :condition
   belongs_to_active_hash :shipping_burden
+  belongs_to_active_hash :estimated_shipping_date
 
   belongs_to :user
 
@@ -16,6 +17,7 @@ class Item < ApplicationRecord
     validates :shipping_origin_id
     validates :condition_id
     validates :shipping_burden_id
+    validates :estimated_shipping_date_id
   end
 
   with_options numericality: { other_than: 1 } do
@@ -23,5 +25,6 @@ class Item < ApplicationRecord
     validates :shipping_origin_id
     validates :condition_id
     validates :shipping_burden_id
+    validates :estimated_shipping_date_id
   end
 end
