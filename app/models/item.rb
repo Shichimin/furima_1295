@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :category
+  # ↑アソシエーションの定義（履歴を残すための空commit）
 
   belongs_to :user
 
