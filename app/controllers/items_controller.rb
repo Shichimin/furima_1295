@@ -49,6 +49,6 @@ class ItemsController < ApplicationController
       :condition_id,
       :shipping_burden_id,
       :estimated_shipping_date_id
-    )
+    ).merge(user_id: current_user.id)
   end
 end
