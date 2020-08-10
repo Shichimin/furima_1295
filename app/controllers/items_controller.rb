@@ -5,9 +5,6 @@ class ItemsController < ApplicationController
     @items = Item.all
   end
 
-  def show
-  end
-
   def new
     @item = Item.new
   end
@@ -15,9 +12,6 @@ class ItemsController < ApplicationController
   def create
     @item = Item.create(item_params)
     redirect_to root_path
-  end
-
-  def edit
   end
 
   def update
