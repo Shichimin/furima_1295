@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit]
+  before_action :set_item, only: [:show, :edit, :update]
 
   def index
     @items = Item.all
@@ -21,8 +21,7 @@ class ItemsController < ApplicationController
   end
 
   def update
-    item = Item.find_by(id: params[:id])
-    if item.update(item_params)
+    if @item.update(item_params)
       redirect_to root_path
     else
       render :edit
