@@ -1,11 +1,16 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
+  # ActiveHashのアソシエーション
   belongs_to_active_hash :category
   belongs_to_active_hash :shipping_origin
   belongs_to_active_hash :condition
   belongs_to_active_hash :shipping_burden
   belongs_to_active_hash :estimated_shipping_date
 
+  # ActiveStoregeのアソシエーション
+  has_one_attached :image
+
+  # Userテーブルとのアソシエーション
   belongs_to :user
 
   # 空の投稿を保存できないようにする
@@ -31,5 +36,5 @@ class Item < ApplicationRecord
   end
 
   # priceの範囲が「¥300〜¥9,999,999」の間でないと保存できないようにする
-  validates :price, numericality: { greater_than_or_equal_to: 300, less_than: 10000000 }  
+  validates :price, numericality: { greater_than_or_equal_to: 300, less_than: 10_000_000 }
 end
