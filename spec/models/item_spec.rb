@@ -56,12 +56,12 @@ describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Estimated shipping date can't be blank")
       end
-      it 'priceの値が300より小さいと出品できない' do
+      it 'priceの範囲が300~9999999の間でないと出品できない（priceの値が300より小さい場合）' do
         @item.price = 299
         @item.valid?
         expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
       end
-      it 'priceの値が9999999より大きいと出品できない' do
+      it 'priceの範囲が300~9999999の間でないと出品できない（priceの値が9999999より大きい場合）' do
         @item.price = 10_000_000
         @item.valid?
         expect(@item.errors.full_messages).to include('Price must be less than 10000000')
