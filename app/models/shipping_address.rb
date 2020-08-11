@@ -1,4 +1,5 @@
 class ShippingAddress < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
 
   belongs_to :item
@@ -9,7 +10,6 @@ class ShippingAddress < ApplicationRecord
     validates :prefecture
     validates :city
     validates :house_number
-    validates :property_name
     validates :phone_number
   end
 
