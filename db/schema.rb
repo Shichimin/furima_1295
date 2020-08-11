@@ -54,6 +54,13 @@ ActiveRecord::Schema.define(version: 2020_08_11_113705) do
   end
 
   create_table "shipping_addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "zip_code", default: "", null: false
+    t.integer "prefecture_id", null: false
+    t.string "city", default: "", null: false
+    t.string "house_number", default: "", null: false
+    t.string "property_name"
+    t.string "phone_number", default: "", null: false
+    t.integer "item_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
