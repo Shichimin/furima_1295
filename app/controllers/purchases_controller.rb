@@ -1,7 +1,5 @@
 class PurchasesController < ApplicationController
-  def show
-    @item = Item.find_by(id: params[:id])
-  end
+  before_action :set_item, only: [:show, :create, :pay_item]
 
   def new
     @purchase = ItemPurchase.new
@@ -21,10 +19,9 @@ class PurchasesController < ApplicationController
   private
 
   def pay_item
-    @item = Item.find_by(id: params[:id])
     Payjp.api_key = "sk_test_738a390c43c2f014e0cb79f6"  # PAY.JPテスト秘密鍵
     Payjp::Charge.create(
-      amount: 5000,
+      amount: @item.price,
       card: purchase_params[:token],    # カードトークン
       currency:'jpy'                 # 通貨の種類
     )
@@ -40,5 +37,9 @@ class PurchasesController < ApplicationController
       :phone_number,
       :token
     ).merge(user_id: current_user.id, item_id: params[:item_id])
+  end
+
+  def set_item
+    @item = Item.find_by(id: params[:item_id])
   end
 end
