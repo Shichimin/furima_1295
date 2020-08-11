@@ -1,5 +1,8 @@
 class User < ApplicationRecord
+
+  # 各テーブルとのアソシエーション
   has_many :items
+  has_many :purchase
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

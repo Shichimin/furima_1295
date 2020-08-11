@@ -10,8 +10,10 @@ class Item < ApplicationRecord
   # ActiveStoregeのアソシエーション
   has_one_attached :image
 
-  # Userテーブルとのアソシエーション
+  # 各テーブルとのアソシエーション
   belongs_to :user
+  has_one :purchase
+  has_one :shipping_address
 
   # 空の投稿を保存できないようにする
   with_options presence: true do
