@@ -7,7 +7,8 @@ class ItemPurchase
                 :property_name,
                 :phone_number,
                 :user_id,
-                :item_id
+                :item_id,
+                :token
 
   def save
     ShippingAddress.create(
