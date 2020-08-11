@@ -6,13 +6,13 @@ class ShippingAddress < ApplicationRecord
   # 空の投稿を保存できないようにする
   with_options presence: true do
     validates :zip_code
-    validates :prefecture_id
+    validates :prefecture
     validates :city
     validates :house_number
     validates :property_name
-    validates :phne_number
+    validates :phone_number
   end
 
   #都道府県の選択が「--」のときは保存できないようにする
-  validates :genre_id, numericality: { other_than: 1 } 
+  validates :prefecture_id, numericality: { other_than: 1 } 
 end

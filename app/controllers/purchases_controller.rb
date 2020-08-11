@@ -9,19 +9,20 @@ class PurchasesController < ApplicationController
 
   def create
     @purchase = ItemPurchase.new(purchase_params)
+    @purchase.save
+    redirect_to root_path
   end
 
   private
 
   def purchase_params
-    params.require(:item_purchase).permit(
+    params.permit(
       :zip_code,
       :prefecture_id,
       :city,
       :house_number,
       :property_name,
-      :phone_number,
-      :user_id,
-      :item_id)
+      :phone_number
+    ).merge(user_id: current_user.id, item_id: params[:item_id])
   end
 end
