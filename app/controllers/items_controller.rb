@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update]
+  before_action :move_to_index, except: [:index, :show]
 
   def index
     @items = Item.all
@@ -49,5 +50,11 @@ class ItemsController < ApplicationController
       :shipping_burden_id,
       :estimated_shipping_date_id
     ).merge(user_id: current_user.id)
+  end
+
+  def move_to_index
+    unless user_signed_in?
+      redirect_to action: :index
+    end
   end
 end
