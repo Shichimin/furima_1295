@@ -1,4 +1,7 @@
 class PurchasesController < ApplicationController
+  def show
+  end
+
   def new
     @purchase = ItemPurchase.new
   end
