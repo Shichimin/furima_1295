@@ -1,4 +1,6 @@
 class ShippingAddress < ApplicationRecord
+  belongs_to_active_hash :prefecture
+
   belongs_to :item
 
   # 空の投稿を保存できないようにする
@@ -10,4 +12,7 @@ class ShippingAddress < ApplicationRecord
     validates :property_name
     validates :phne_number
   end
+
+  #都道府県の選択が「--」のときは保存できないようにする
+  validates :genre_id, numericality: { other_than: 1 } 
 end
