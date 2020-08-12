@@ -66,6 +66,31 @@ describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Price must be less than 10000000')
       end
+      it 'カテゴリーの選択が「--」のときは出品できない' do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
+      end
+      it '配送料の負担の選択が「--」のときは出品できない' do
+        @item.shipping_burden_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping burden must be other than 1")
+      end
+      it '商品の状態の選択が「--」のときは出品できない' do
+        @item.condition_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Condition must be other than 1")
+      end
+      it '配送元の地域の選択が「--」のときは出品できない' do
+        @item.shipping_origin_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping origin must be other than 1")
+      end
+      it '発送日の目安の選択が「--」のときは出品できない' do
+        @item.estimated_shipping_date_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Estimated shipping date must be other than 1")
+      end
     end
   end
 end
