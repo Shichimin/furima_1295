@@ -50,6 +50,11 @@ describe ShippingAddress, type: :model do
         @shipping_address.valid?
         expect(@shipping_address.errors.full_messages).to include("Zip code is invalid")
       end
+      it '都道府県の選択が「--」のときは購入できない' do
+        @shipping_address.prefecture_id = 1
+        @shipping_address.valid?
+        expect(@shipping_address.errors.full_messages).to include("Prefecture must be other than 1")
+      end
       it 'phone_numberの11桁より大きいと購入できない' do
         @shipping_address.phone_number = '000000000000'
         @shipping_address.valid?

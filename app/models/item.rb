@@ -19,16 +19,18 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :name
     validates :image
-    validates :price
     validates :description
     validates :category_id
     validates :shipping_origin_id
     validates :condition_id
     validates :shipping_burden_id
     validates :estimated_shipping_date_id
+
+    # priceの範囲が「¥300〜¥9,999,999」の間でないと保存できないようにする
+    validates :price, numericality: { greater_than_or_equal_to: 300, less_than: 10_000_000 }
   end
 
-  # ジャンルの選択が「--」のときは保存できないようにする
+  # 各項目の選択が「--」のときは保存できないようにする
   with_options numericality: { other_than: 1 } do
     validates :category_id
     validates :shipping_origin_id
@@ -36,7 +38,4 @@ class Item < ApplicationRecord
     validates :shipping_burden_id
     validates :estimated_shipping_date_id
   end
-
-  # priceの範囲が「¥300〜¥9,999,999」の間でないと保存できないようにする
-  validates :price, numericality: { greater_than_or_equal_to: 300, less_than: 10_000_000 }
 end
