@@ -2,7 +2,7 @@ class PurchasesController < ApplicationController
   before_action :set_item, only: [:show, :create, :pay_item]
 
   def show
-    current_user.id == @item.user_id if redirect_to root_path
+    redirect_to root_path if current_user.id == @item.user_id  
   end
 
   def new
