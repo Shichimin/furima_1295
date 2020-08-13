@@ -1,6 +1,11 @@
 class PurchasesController < ApplicationController
   before_action :set_item, only: [:show, :create, :pay_item]
 
+  def show
+    redirect_to root_path if current_user.id == @item.user_id
+    redirect_to root_path if @item.purchase.present?
+  end
+
   def new
     @purchase = ItemPurchase.new
   end
